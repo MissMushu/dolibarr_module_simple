@@ -1,5 +1,5 @@
 <?php
-
+ //
 	require 'config.php';
 	
 	dol_include_once('/contact/class/contact.class.php');
