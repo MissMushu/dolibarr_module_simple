@@ -61,7 +61,7 @@ class Actionssimple
 	 */
 	function formObjectOptions($parameters, &$object, &$action, $hookmanager)
 	{
-//TODO méthode à copier
+//TODO méthode à copie
 
 		$error = 0; // Error counter
 		$myvalue = ''; // A result value
