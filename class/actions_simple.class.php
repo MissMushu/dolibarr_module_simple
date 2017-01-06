@@ -61,26 +61,33 @@ class Actionssimple
 	 */
 	function formObjectOptions($parameters, &$object, &$action, $hookmanager)
 	{
-//TODO méthode à copier
+//TODO méthode à copie
 
 		$error = 0; // Error counter
 		$myvalue = ''; // A result value
 
 		if (in_array('contactcard', explode(':', $parameters['context'])))
 		{
-                    global $db,$langs;
 
-
-                    $societe = new Societe($db);
-                    $societe->fetch($object->socid);
-                    
-                    
-                    
 		  echo '<tr>
-		  	<td>CP</td>
-                        <td colspan="'.$parameters['colspan'].'">'.$societe->zip.'</td>
+		  	<td>Hook 208000 (Code Postal)</td><td colspan="'.$parameters['colspan'].'">'.$object->zip.'</td>
 		  </tr>';
 		}
+                if (in_array('thirdpartycard', explode(':', $parameters['context'])))
+		{
+                  if (!empty($object->zip)&&(!empty($object->capital))){
+                    dol_include_once('/custom/simple/class/grade.class.php');
+                    
+
+                    $grade=new Grade;
+                    
+                    echo '<tr>
+                          <td>Grade du tiers</td><td colspan="'.$parameters['colspan'].'">'.$grade->getGrade($object->capital, $object->zip).'</td>
+                    </tr>';
+                  
+                  }
+		} 
+
 
 		if (! $error)
 		{
